@@ -1,0 +1,135 @@
+﻿@model IEnumerable<LekTest.DailyPayment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div ng-controller="AppCtrl">
+    <md-button class="md-primary" ng-href="/Home/Create">Add</md-button>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                    @*<md-datepicker ng-model="myDate" md-placeholder="Enter date" disabled=""></md-datepicker>*@
+                </td>
+                <td>
+                    <md-content>
+                        <md-button class="fa fa-pencil-square-o md-raised md-primary" ng-click="toggleRight()" ng-hide="isOpenRight(@item)" @*ng-click="showEdit(@item.Id)"*@> Edit</md-button>
+                        <md-button class="fa fa-list-alt md-raised md-primary" ng-click="showDetails(@item.Id)"> Details</md-button>
+                        <md-button class="fa fa-times md-raised md-primary" ng-click="showDelete(@item.Id)"> Delete</md-button>
+                    </md-content>
+                    @*<div>
+                            <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+                                Toggle right
+                            </md-button>
+                        </div>*@
+                </td>
+            </tr>
+
+        }
+
+    </table>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+        <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Edit Data</h1>
+        </md-toolbar>
+        <md-content ng-controller="RightCtrl" layout-padding="">
+            @{
+                var data = Model.Where(x => x.Id == 30).Single();
+                using (Html.BeginForm())
+                {
+                    @*@Html.AntiForgeryToken()*@
+
+                    <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                        @Html.LabelFor(m => data.Name)
+                        <input type="text" ng-model="editTransaction.name" ng-required="true">
+                        @*<div ng-messages="RequestForm.Email.$error">
+                                <div ng-message="required">Please enter a valid email address.</div>
+                            </div>*@
+                    </md-input-container>
+
+                    <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                        @Html.LabelFor(m => data.Type)
+                        <input type="text" ng-model="editTransaction.type" ng-required="true">
+                        @*<div ng-messages="RequestForm.Email.$error">
+                                <div ng-message="required">Please enter a valid email address.</div>
+                            </div>*@
+                    </md-input-container>
+
+                    <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                        @Html.LabelFor(m => data.Description)
+                        <input type="text" ng-model="editTransaction.description" ng-required="true">
+                        @*<div ng-messages="RequestForm.Email.$error">
+                                <div ng-message="required">Please enter a valid email address.</div>
+                            </div>*@
+                    </md-input-container>
+
+                    <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                        @Html.LabelFor(m => data.Amount)
+                        <input type="number" ng-model="editTransaction.amount" ng-required="true">
+                        @*<div ng-messages="RequestForm.Email.$error">
+                                <div ng-message="required">Please enter a valid email address.</div>
+                            </div>*@
+                    </md-input-container>
+
+                    <md-content>
+                        <md-datepicker ng-model="editTransaction.date" md-placeholder="Enter date"></md-datepicker>
+                    </md-content>
+
+                    <md-content>
+                        <md-button class="md-raised md-primary" ng-click="edit()">Update</md-button>
+                    </md-content>
+
+                    @Html.Hidden(Html.NameFor(m => data.Id).ToHtmlString(), "{{editTransaction.id}}")
+                    @Html.Hidden(Html.NameFor(m => data.Date).ToHtmlString(), "{{editTransaction.date}}")
+                    @Html.Hidden(Html.NameFor(m => data.Amount).ToHtmlString(), "{{editTransaction.amount}}")
+                    @Html.Hidden(Html.NameFor(m => data.Name).ToHtmlString(), "{{editTransaction.name}}")
+                    @Html.Hidden(Html.NameFor(m => data.Type).ToHtmlString(), "{{editTransaction.type}}")
+                    @Html.Hidden(Html.NameFor(m => data.Description).ToHtmlString(), "{{editTransaction.description}}")
+                }
+            }
+
+            <hr/>
+            <md-button ng-click="close()" class="md-primary">
+                Close Sidenav Right
+            </md-button>
+        </md-content>
+
+    </md-sidenav>
+</div>

@@ -1,0 +1,71 @@
+﻿@model LekTest.DailyPayment
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<div ng-controller="CreateCtrl">
+
+    @using (Html.BeginForm("Create", "Home"))
+    {
+        @Html.AntiForgeryToken()
+
+        @*<h4>DailyPayment</h4>
+            <hr />*@
+            <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                @Html.LabelFor(model => model.Name)
+                <input type="text" ng-model="transaction.name" ng-required="true">
+                @*<div ng-messages="RequestForm.Email.$error">
+                        <div ng-message="required">Please enter a valid email address.</div>
+                    </div>*@
+            </md-input-container>
+
+            <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                @Html.LabelFor(model => model.Type)
+                <input type="text" ng-model="transaction.type" ng-required="true">
+                @*<div ng-messages="RequestForm.Email.$error">
+                        <div ng-message="required">Please enter a valid email address.</div>
+                    </div>*@
+            </md-input-container>
+
+            <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                @Html.LabelFor(model => model.Description)
+                <input type="text" ng-model="transaction.description" ng-required="true">
+                @*<div ng-messages="RequestForm.Email.$error">
+                        <div ng-message="required">Please enter a valid email address.</div>
+                    </div>*@
+            </md-input-container>
+
+            <md-input-container class="md-block textBox" layout="row" layout-align="center center">
+                @Html.LabelFor(model => model.Amount)
+                <input type="number" ng-model="transaction.amount" ng-required="true">
+                @*<div ng-messages="RequestForm.Email.$error">
+                        <div ng-message="required">Please enter a valid email address.</div>
+                    </div>*@
+            </md-input-container>
+
+            <md-content>
+                <md-datepicker ng-model="transaction.date" md-placeholder="Enter date"></md-datepicker>
+            </md-content>
+
+            <md-content>
+                <md-button class="md-raised md-primary" type="submit">Create</md-button>
+            </md-content>
+
+            @Html.Hidden(Html.NameFor(model => model.Date).ToHtmlString(), "{{transaction.date}}")
+            @Html.Hidden(Html.NameFor(model => model.Amount).ToHtmlString(), "{{transaction.amount}}")
+            @Html.Hidden(Html.NameFor(model => model.Name).ToHtmlString(), "{{transaction.name}}")
+            @Html.Hidden(Html.NameFor(model => model.Type).ToHtmlString(), "{{transaction.type}}")
+            @Html.Hidden(Html.NameFor(model => model.Description).ToHtmlString(), "{{transaction.description}}")
+    }
+
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
