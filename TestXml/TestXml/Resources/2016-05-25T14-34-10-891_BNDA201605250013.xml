@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<S2SCTScf:SCTIcfBlkCredTrf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:S2SCTScf="urn:S2SCTIcf:xsd:$SCTIcfBlkCredTrf">
+<S2SCTScf:SndgInst>BNDANL2A</S2SCTScf:SndgInst>
+<S2SCTScf:RcvgInst>ABNANL2A</S2SCTScf:RcvgInst>
+<S2SCTScf:FileRef>BNDA201605250013</S2SCTScf:FileRef>
+<S2SCTScf:SrvcId>SCT</S2SCTScf:SrvcId>
+<S2SCTScf:TstCode>P</S2SCTScf:TstCode>
+<S2SCTScf:FType>ICF</S2SCTScf:FType>
+<S2SCTScf:FDtTm>2016-05-25T14:34:10.8756127+02:00</S2SCTScf:FDtTm>
+<S2SCTScf:NumCTBlk>1</S2SCTScf:NumCTBlk>
+<S2SCTScf:NumPCRBlk>0</S2SCTScf:NumPCRBlk>
+<S2SCTScf:NumRFRBlk>0</S2SCTScf:NumRFRBlk>
+<S2SCTScf:NumROIBlk>0</S2SCTScf:NumROIBlk>
+<S2SCTScf:FIToFICstmrCdtTrf>
+    <GrpHdr xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02">
+      <MsgId>BNDANL2A/20160525/0000000013</MsgId>
+      <CreDtTm>2016-05-25T14:34:10.8756127+02:00</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <TtlIntrBkSttlmAmt Ccy="EUR">2.00</TtlIntrBkSttlmAmt>
+      <IntrBkSttlmDt>2016-05-26</IntrBkSttlmDt>
+      <SttlmInf>
+        <SttlmMtd>CLRG</SttlmMtd>
+        <ClrSys>
+          <Prtry>ST2</Prtry>
+        </ClrSys>
+      </SttlmInf>
+      <InstgAgt>
+        <FinInstnId>
+          <BIC>BNDANL2A</BIC>
+        </FinInstnId>
+      </InstgAgt>
+    </GrpHdr>
+    <CdtTrfTxInf xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02">
+      <PmtId>
+        <EndToEndId>ETE/BNDANL2A/20160525/0000000013/10</EndToEndId>
+        <TxId>TRX/BNDANL2A/20160525/0000000013/1</TxId>
+      </PmtId>
+      <PmtTpInf>
+        <SvcLvl>
+          <Cd>SEPA</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+      <IntrBkSttlmAmt Ccy="EUR">2.00</IntrBkSttlmAmt>
+      <ChrgBr>SLEV</ChrgBr>
+      <Dbtr>
+        <Nm>Sander Oudejans</Nm>
+        <PstlAdr>
+          <Ctry>NL</Ctry>
+          <AdrLine>AddressText1</AdrLine>
+          <AdrLine>AddressText2 AddressText3</AdrLine>
+        </PstlAdr>
+      </Dbtr>
+      <DbtrAcct>
+        <Id>
+          <IBAN>NL69BNDA0312234457</IBAN>
+        </Id>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId>
+          <BIC>BNDANL2A</BIC>
+        </FinInstnId>
+      </DbtrAgt>
+      <CdtrAgt>
+        <FinInstnId>
+          <BIC>RABONL2U</BIC>
+        </FinInstnId>
+      </CdtrAgt>
+      <Cdtr>
+        <Nm>Sander Oudejans</Nm>
+        <PstlAdr>
+          <Ctry>NL</Ctry>
+          <AdrLine>AddressText1</AdrLine>
+          <AdrLine>AddressText2 AddressText3</AdrLine>
+        </PstlAdr>
+      </Cdtr>
+      <CdtrAcct>
+        <Id>
+          <IBAN>NL25RABO0312234457</IBAN>
+        </Id>
+      </CdtrAcct>
+      <RmtInf>
+        <Ustrd>ReferenceZomaar1</Ustrd>
+      </RmtInf>
+    </CdtTrfTxInf>
+  </S2SCTScf:FIToFICstmrCdtTrf>
+</S2SCTScf:SCTIcfBlkCredTrf>
