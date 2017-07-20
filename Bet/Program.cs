@@ -12,57 +12,68 @@ namespace Bet
         private static int _currentMoney;
         private static int _winStreak = 0;
         private static int _loseStreak = 0;
-        private static int _minStartMoney = 50;
-        private static int _startMoney;
+        private static int _minStartMoney = 10;
+        private static double _startMoney;
         private static int _previousMoney;
         public static void Main(string[] args)
         {
             Console.WriteLine("Input money");
             _currentMoney = Convert.ToInt32(Console.ReadLine());
 
-            //for (int i = 0; i < 100; i++)
+            //for (int j = 0; j < 100; j++)
             //{
             //    Console.WriteLine(GetBet().ToString());
             //}
-
-            for (int i = 0; i < 100; i++)
+            
+            int i = 1;
+            for (; ; )
             {
-                int startMoney = GetStartMoney();
-                _previousMoney = startMoney;
-                if (_currentMoney > 0 && _currentMoney >= startMoney)
+                int betAmounts = (int)GetStartMoney();
+                _previousMoney = betAmounts;
+                if (_currentMoney > 0 && _currentMoney >= betAmounts)
                 {
-                    bool result = GoBet(GetBet(), startMoney);
-                    Console.WriteLine("Round : {0} Start Money : {1}, Result : {2}, Current Money : {3}, Win Streak : {4}, Lose Streak : {5}", i, startMoney, result, _currentMoney, _winStreak, _loseStreak);
+                    bool result = GoBet(GetBet(), betAmounts);
+                    Console.WriteLine("Round : {0} Bet Amount : {1}, Result : {2}, Current Money : {3}, Win Streak : {4}, Lose Streak : {5}", i, betAmounts, result, _currentMoney, _winStreak, _loseStreak);
+                }
+                else if (_currentMoney > _minStartMoney)
+                {
+                    bool result = GoBet(GetBet(), betAmounts);
+                    Console.WriteLine("Round : {0} Bet Amount : {1}, Result : {2}, Current Money : {3}, Win Streak : {4}, Lose Streak : {5}", i, betAmounts, result, _currentMoney, _winStreak, _loseStreak);
+                    if (!result)
+                    {
+                        break;
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Not enought money");
                     break;
                 }
+                i++;
             }
             Console.ReadKey();
 
         }
 
-        private static int GetStartMoney()
+        private static double GetStartMoney()
         {
             //int multiply = _loseStreak == 0 ? 1 : _loseStreak;
             int multiply = 2;
             if (_loseStreak == 0 && _winStreak == 0 || _winStreak == 1)
             {
-                _startMoney = ((_currentMoney * 2) / 100) * multiply;
+                _startMoney = (((_currentMoney * 0.7) / 100) * multiply);
             }
             else if (_loseStreak > 0)
             {
                 _startMoney = _previousMoney * 2;
             }
-            return ((_currentMoney * 2) / 100) * multiply >= _minStartMoney ? _startMoney : _currentMoney;
+            return ((_currentMoney * 0.7) / 100) * multiply >= _minStartMoney ? _startMoney : _currentMoney;
         }
 
         private static bool GetBet()
         {
-            //Random o = new Random();
-            Thread.Sleep(23);
+            Random o = new Random();
+            Thread.Sleep(o.Next(100));
             return (((DateTime.Now.Ticks) % 10) % 2) != 1 ? true : false;
         }
 
@@ -73,7 +84,7 @@ namespace Bet
             if (_currentMoney <= 0 || _currentMoney < money)
             {
                 Console.WriteLine("You don't have enought money.");
-                return false;
+                return true;
             }
             else
             {
